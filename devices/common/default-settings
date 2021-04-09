@@ -3,7 +3,7 @@
 version=`uci get base_config.@status[0].version 2>/dev/null`
 
 . /etc/openwrt_release
-test -n "${DISTRIB_ID}" || DISTRIB_ID=OpenWrt
+test -n "${DISTRIB_ID}" || DISTRIB_ID=R4S
 DISTRIB_ID=`echo -n $DISTRIB_ID | tr a-z A-Z`
 
 MACADDR=""
@@ -31,7 +31,7 @@ ln -s /sbin/poweroff /sbin/shutdown
 
 test $version -lt 1 && {
 	uci set luci.main.lang='auto'
-	uci set luci.main.mediaurlbase=/luci-static/edge
+	uci set luci.main.mediaurlbase=/luci-static/bootstrap
 	uci commit luci
 
 	uci get system.@system[0] >/dev/null 2>&1 && {
