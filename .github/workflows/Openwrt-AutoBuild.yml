@@ -189,20 +189,13 @@ jobs:
     - name: Organize files
       id: organize
       run: |
-        mkdir firmware && find openwrt/bin/targets/*/*/ -maxdepth 1 \
-        -name "*combined*" \
-        -or -name "*sysupgrade*" \
-        -or -name "*armvirt-64-default-rootfs*" \
-        -or -name "sha256sums" \
-        | xargs -i mv -f {} ./firmware/
+        mkdir firmware
+        mv -f openwrt/bin ./firmware/
         cp openwrt/.config  ./firmware/nanopi-r4s.config
         cd firmware
         echo ${{ env.date4 }} > version.txt
         mv sha256sums nanopi-r4s_sha256sums
         rename -v "s/^openwrt/${{ env.date3 }}-openwrt/" *
-        rename -v "s/xiaomi_redmi-router/redmi/" *bin
-        rename -v "s/(d-team_|xiaoyu_)//" *bin
-        rename -v "s/friendlyarm_//" *gz
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         Emoji=("🎉" "🤞" "✨" "🎁" "🎈" "🎄" "🎨" "💋" "🍓" "🍕" "🍉" "💐" "🌴" "🚀" "🛸" "🗽" "⛅" "🌈" "🔥" "⛄" "🐶" "🏅" "🦄" "🐤")
         RANDOM=$$$(date +%s)
@@ -236,18 +229,3 @@ jobs:
       run: |
         [ steps.compile.outputs.status == 'success' ] && curl https://sc.ftqq.com/${{ secrets.SCKEY }}.send?text=🎉OpenWrt_${{ env.date3 }}_nanopi-r4s编译完成😋|| curl https://sc.ftqq.com/${{ secrets.SCKEY }}.send?text=❌OpenWrt_${{ env.date3 }}_nanopi-r4s编译失败😂
 
-    - name: Delete workflow runs
-      uses: GitRML/delete-workflow-runs@main
-      with:
-        retain_days: 10
-        keep_minimum_runs: 0
-
-    - name: Remove old Releases
-      uses: dev-drprasad/delete-older-releases@master
-      continue-on-error: true
-      if: env.UPLOAD_FIRMWARE_FOR_RELEASE == 'true' && !cancelled()
-      with:
-        keep_latest: 15
-        delete_tags: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
