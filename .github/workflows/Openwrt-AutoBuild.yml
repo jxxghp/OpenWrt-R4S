@@ -190,12 +190,10 @@ jobs:
       id: organize
       run: |
         mkdir firmware
-        mv -f openwrt/bin ./firmware/
+        mv -f openwrt/bin/* ./firmware/
         cp openwrt/.config  ./firmware/nanopi-r4s.config
         cd firmware
         echo ${{ env.date4 }} > version.txt
-        mv sha256sums nanopi-r4s_sha256sums
-        rename -v "s/^openwrt/${{ env.date3 }}-openwrt/" *
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         Emoji=("🎉" "🤞" "✨" "🎁" "🎈" "🎄" "🎨" "💋" "🍓" "🍕" "🍉" "💐" "🌴" "🚀" "🛸" "🗽" "⛅" "🌈" "🔥" "⛄" "🐶" "🏅" "🦄" "🐤")
         RANDOM=$$$(date +%s)
