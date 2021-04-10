@@ -41,16 +41,7 @@
 
 | 设备           | 固件下载                                             | 说明                                 |
 |----------------|-----------------------------------------------------|--------------------------------------|
-| X86_64         | [📥](https://op.supes.top/firmware/x86_64/)         | 请分配不少于1G的存储空间           |
-| Redmi-AC2100 (红米AC2100)   | [📥](https://op.supes.top/firmware/redmi-ac2100/)   | 在breed中需要先刷底包                |
-| Phicomm-K2P (斐讯K2P)    | [📥](https://op.supes.top/firmware/phicomm-k2p/)    | 闪存布局请使用默认的公版     |
-| K2P-32M-USB (K2P 32M USB版)   | [📥](https://op.supes.top/firmware/k2p-32m-usb/)    | 闪存布局请使用默认的公版     |
-| NanoPi-R2S    | [📥](https://op.supes.top/firmware/nanopi-r2s/)     | 默认交换了网口,靠近电源口的是WAN口   |
 | NanoPi-R4S    | [📥](https://op.supes.top/firmware/nanopi-r4s/)     |    |
-| Newifi-D2 (新路由3)      | [📥](https://op.supes.top/firmware/newifi-d2/)      |                                      |
-| Hiwifi-HC5962 (极路由4增强版)  | [📥](https://op.supes.top/firmware/hiwifi-hc5962/)  |                                      |
-| Xiaomi-R3P (小米路由PRO)    | [📥](https://op.supes.top/firmware/xiaomi-r3p/)     |                                      |
-| XY-C5 (小娱-C5)         | [📥](https://op.supes.top/firmware/XY-C5/)          |                                      |
 
 
 后台入口 10.0.0.1 &nbsp;(若后台无法打开,请插拔交换wan,lan网线顺序.)
@@ -75,16 +66,20 @@ diy云编译教程: [Read the details in my blog (in Chinese) | 中文教程](ht
 ### 默认插件包含:
 
 + Opkg 软件包管理
-+ SSR-PLUS
-+ Adblock 基于DNS的广告过滤
++ Bypass
 + UPNP 自动端口转发
 + Turbo ACC 网络加速
++ 京东签到
++ ServerChan
++ wrtbwmon、nlbwmon
++ AdGuardHome
++ 解锁网易云灰色歌曲
++ SoftetherVPN
++ ...
 
 其他插件请自行在 后台->软件包 中安装,系统升级不会丢失插件.每次系统升级完成连接网络后,会自动安装所有已自选安装的插件.
 
-#### 默认后台地址 10.0.0.1, 密码 root
-
-#### X64设备请分配不低于800M 的磁盘空间.
+#### 默认后台地址 10.10.10.254, 密码 root
 
 ### 如何在本地使用此项目编译自己需要的 OpenWrt 固件
 
