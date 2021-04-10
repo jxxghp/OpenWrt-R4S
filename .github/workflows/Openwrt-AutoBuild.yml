@@ -189,10 +189,7 @@ jobs:
     - name: Organize files
       id: organize
       run: |
-        mkdir firmware
-        mv -f openwrt/bin/* ./firmware/
-        cp openwrt/.config  ./firmware/nanopi-r4s.config
-        cd firmware
+        cd openwrt/bin
         echo ${{ env.date4 }} > version.txt
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         Emoji=("🎉" "🤞" "✨" "🎁" "🎈" "🎄" "🎨" "💋" "🍓" "🍕" "🍉" "💐" "🌴" "🚀" "🛸" "🗽" "⛅" "🌈" "🔥" "⛄" "🐶" "🏅" "🦄" "🐤")
@@ -225,5 +222,4 @@ jobs:
       continue-on-error: true
       if: env.SCKEY
       run: |
-        [ steps.compile.outputs.status == 'success' ] && curl https://sc.ftqq.com/${{ secrets.SCKEY }}.send?text=🎉OpenWrt_${{ env.date3 }}_nanopi-r4s编译完成😋|| curl https://sc.ftqq.com/${{ secrets.SCKEY }}.send?text=❌OpenWrt_${{ env.date3 }}_nanopi-r4s编译失败😂
-
+        curl https://sc.ftqq.com/${{ secrets.SCKEY }}.send?text=🎉OpenWrt_${{ env.date3 }}_nanopi-r4s编译完成😋
